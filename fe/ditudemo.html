@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<head>
+    <title>北京地图</title>
+</head>
+<body>
+这是北京地图：
+
+<img src="http://api.map.baidu.com/staticimage/v2?ak=GjxqD6pWKb9opUIWD5TiSAH4PZdvPNaj&mcode=666666&center=116.403874,39.914888&width=300&height=200&zoom=9">
+
+
+<script type="text/javascript">
+window.onload = function(){
+    var aa = new Date().getSeconds();
+    
+    function getLocalTime(nS) { 
+    return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' '); 
+    } 
+}
+</script>
+</body>
+</html>
+
