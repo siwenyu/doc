@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script
+  src="https://code.jquery.com/jquery-2.2.4.js"
+  integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+  crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+    <h2>tip</h2>
+    所有的app都可以在console中修改
+    <h2>鼠标悬停显示的文字</h2>
+    <div id="app">
+    {{ message }}
+    <span v-bind:title="message1">鼠标悬停显示的文字</div>
+    </div>
+    <hr>
+    <h2>判断显示</h2>
+    <div id="app1" v-if="seen">
+        {{ message }}
+    </div>
+    <hr>
+
+    <div>
+        <p id="app-3" v-if="seen">现在你看到我了</p>
+    </div>
+
+    <h2>循环</h2>
+    <div id="app4">
+      <div v-for="todo in todos1">{{todo}}</div>
+    </div>
+    <h2>click事件绑定</h2>
+    <div id="app5">
+        <p>{{data}}</p>
+        <button v-on:click="change">点击变换文字</button>
+    </div>
+    <h2>model表单模型</h2>
+    <div id="app6">
+        <p>{{ message }}</p>
+        <input v-model="message">
+    </div>
+
+    <h2>component组件定义</h2>
+    <div id="app7">
+        <div v-for="item in todos1">
+        <mycom  v-bind:todo = "item"  v-bind:todo1 = "item">11</mycom>
+        </div>
+    </div>
+
+    
+    <div id="app-7">
+          <ol>
+            <template v-for="item in groceryList">
+            <todo-item v-bind:todo="item"></todo-item>
+            </template>
+          </ol>
+    </div>
+
+</body>
+<script type="text/javascript">
+
+Vue.component('todo-item', {
+  props: ['todo'],
+  template: '<li>{{ todo.text }}</li>'
+})
+var app7 = new Vue({
+  el: '#app-7',
+  data: {
+    groceryList: [
+      { text: 'Vegetables' },
+      { text: 'Cheese' },
+      { text: 'Whatever else humans are supposed to eat' }
+    ]
+  }
+})
+
+
+Vue.component("mycom", {
+    props:["todo","todo1"],
+    template:"<div>{{ todo1.text }}</div>"
+})
+
+var app7 = new Vue({
+    el:"#app7",
+    data:{
+        todos:[1,2,3,4,5,6],
+        todos1:[
+            { "text": '蔬菜' },
+            { "text": '奶酪' },
+            { "text": '随便其他什么人吃的东西' }
+        ]
+    }
+})
+
+
+
+
+var app6 = new Vue({
+        el:"#app6",
+        data:{
+            message:"这是啥"
+        }
+        })
+
+var app5 = new Vue({
+        el:"#app5",
+        data: {
+            data:"点击之前",
+            data1:"点击之后，我的文本变化了"
+        },
+        methods:{
+            change:function(){
+                this.data = this.data1;
+            }
+        }
+    })
+
+
+
+var app4 = new Vue({
+        el:"#app4",
+        data:{
+            todos:[
+                {text:"name"},
+                {text:2}
+            ],
+            todos1:{
+                name:1
+            }
+        }
+    })
+
+
+var app = new Vue({
+    el:"#app",
+    data:{
+        message:'hello',
+        message1: '鼠标' + new Date()
+    }
+});
+var app1 = new Vue({
+        el: "#app1",
+        data: {
+            message: "APP1的message",
+            seen: false
+        }
+    });
+
+var app3 = new Vue({
+  el: '#app-3',
+  data: {
+    seen: true
+  }
+})
+
+
+
+function hInndex(){
+    var hAll = $("h2");
+    hAll.each(function(index,val){
+        $(this).text(index + 1 + ". " + $(this).text());
+        $(this).css({"margin-top":"50px"});
+    })
+}
+hInndex();
+
+
+</script>
+</html>
