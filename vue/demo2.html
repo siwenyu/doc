@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script
+  src="https://code.jquery.com/jquery-2.2.4.js"
+  integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+  crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+    <h2>代理</h2>
+    <div id="app1"></div>
+
+    <h2>生命周期</h2>
+    <div id="app2" v-on:click="clkDes">这是app2</div>
+    
+
+</body>
+<script type="text/javascript">
+
+
+
+
+
+var vm2 = new Vue({
+		el:"#app2",
+		data:{
+			todos:[{name:1},{name:2},{"name3":3}]
+		},
+		beforeCreate:function(){
+			alert(this + "is be beforeCreate");
+		},
+		created:function(){
+			alert(this + "is be created");
+		},
+		beforeMount:function(){
+			alert(this + "is be beforeMount");
+		},
+		mounted:function(){
+			alert(this + "is be mounted	");
+		},
+		beforeUpdate:function(){
+			alert(this + "is be beforeUpdate");
+		},
+		updated:function(){
+			alert(this + "is be updated");
+		},
+		beforeDestroy:function(){
+			alert(this + "is be beforeDestroy");
+		},
+		destroyed:function(){
+			alert(this + "is be destroyed");
+		}
+		
+	})
+
+
+
+var data1 = {
+        maessage:"消息"
+    };  
+var vm = new Vue({
+    el:"#app1",
+    data:data1,
+    methods:{
+        change:function(){
+            alert();
+        }
+    },
+    created:function(){
+        console.log("vm被创建了");
+    }
+})
+
+var a = vm.maessage == data1.maessage;
+console.log(vm.maessage);
+console.log(data1.maessage);
+console.log(a);
+
+console.log(1,vm.$data);
+console.log(1,vm.$el);
+console.log(1,vm.$mount);
+
+
+
+
+
+
+
+
+
+
+
+
+function hInndex(){
+    var hAll = $("h2");
+    hAll.each(function(index,val){
+        $(this).text(index + 1 + ". " + $(this).text());
+        $(this).css({"margin-top":"50px"});
+    })
+}
+hInndex();
+
+
+</script>
+</html>
