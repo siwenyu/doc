@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script
+  src="https://code.jquery.com/jquery-2.2.4.js"
+  integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+  crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+<h2>普通文本绑定</h2>
+<div id="app1" v-once>{{ name }}</div>   
+<h2>纯html</h2>
+<div id="app2" v-html="html">{{ html }}</div>
+<div id="app3" v-html="html"></div>
+<h2>模板中使用变量</h2>
+<div id="app4" >{{ name=='zhangsan'?'name是zhangsan':'name不是zhangsan' }}</div>
+
+
+</body>
+<script type="text/javascript">
+
+var data = {
+    name: "zhangsan",
+    height: "75KG",
+    data: [
+        {data1:1},
+        {data2:2},
+        {data3:3},
+        {data4:4},
+        {data5:5},
+        ],
+    html: "<p style='color:red;'>这是插入的html</p>"
+}
+
+
+var vm4 = new Vue({
+    el:"#app4",
+    data: data
+})
+
+
+var vm1 = new Vue({
+    el:"#app1",
+    data: data
+})
+var vm2 = new Vue({
+    el:"#app2",
+    data: data,
+    method:{
+    }
+})
+var vm3 = new Vue({
+    el:"#app3",
+    data: data
+    
+})
+
+
+
+
+function hInndex(){
+    var hAll = $("h2");
+    hAll.each(function(index,val){
+        $(this).text(index + 1 + ". " + $(this).text());
+        $(this).css({"margin-top":"50px"});
+    })
+}
+hInndex();
+
+
+</script>
+</html>
