@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script
+  src="https://code.jquery.com/jquery-2.2.4.js"
+  integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+  crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <style>
+    .vue_active {
+        color: #38f;
+    }
+    .vue_border{
+        border:1px solid #38f;
+        width: 200px;
+        height: auto;
+        line-height: 30px;
+    }
+    </style>
+</head>
+<body>
+<h2>v-if</h2>
+    <div id="app1">
+        <div v-if="ok">输出</div>
+        <div v-else>no</div>
+        <div v-else>nono</div>
+
+        <div v-if="Math.random() > 0.5">
+          Now you see me
+        </div>
+        <div v-else>
+          Now you don't
+        </div>
+    </div> 
+<h2>v-if</h2>
+<div id="app2" v-show="show">
+v-show
+</div>
+<h2>demo</h2>
+
+<div id="app3">
+    <input v-model="newTodoText" v-on:keyup.enter="addNewTodo" placeholder="add a name" >
+    <ul v-for="todo in todos">
+        <li>{{ todo }} <span v-bind:style="styleObject" v-on:click="rmli">X</span></li>
+    </ul>
+</div>
+
+
+<h2>demo</h2>
+
+<div id="app4">
+    
+    <input v-model="this.addNum"><br>
+    <button v-on:click="addNum ++">点击+1</button><br>
+    <button v-on:click="addNumfn">点击+1</button><br>
+</div>
+
+</body>
+<script type="text/javascript">
+
+var data = {
+    name: "zhangsan",
+    firstName:"first",
+    lastName:"last",
+    fullName:"",
+    height: "75KG",
+    ok:1,
+    show:false,
+    styleObject:{
+        color:"red"
+    },
+    data: [
+        {data1:1},
+        {data2:2},
+        {data3:3},
+        {data4:4},
+        {data5:5},
+        ],
+    html: "<p style='color:red;'>这是插入的html</p>",
+    message: "hello",
+    cumputed:{
+        reverseMessage:function(){
+            return 1;
+        }
+        
+    }
+}
+var vm4 = new Vue({
+    el: "#app4",
+    data: {
+        addNum:1
+    },
+    methods:{
+        addNumfn:function(){
+            return this.addNum++
+        }
+    }
+})
+
+
+var vm3 = new Vue({
+    el:"#app3",
+    data:{
+        newTodoText:"",
+        todos:[
+            {name:"zhangsan"},
+            {name:"lisi"}
+            ],
+        styleObject: {
+            color: 'red',
+            fontSize: '13px',
+            marginLeft: '14px'
+        }
+    },
+    methods:{
+        addNewTodo:function(){
+            this.todos.push(this.newTodoText);
+            this.newTodoText = '';
+        },
+        rmli:function(){
+            this.todos.pop();
+        }
+    }
+    
+})
+
+var vm1 = new Vue({
+    el: "#app1",
+    data: data
+})
+var vm2 = new Vue({
+    el: "#app2",
+    data: data
+})
+
+
+
+
+
+
+
+
+function hInndex(){
+    var hAll = $("h2");
+    hAll.each(function(index,val){
+        $(this).text(index + 1 + ". " + $(this).text());
+        $(this).css({"margin-top":"50px"});
+    })
+}
+hInndex();
+
+
+</script>
+</html>
