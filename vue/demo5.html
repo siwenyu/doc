@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script
+  src="https://code.jquery.com/jquery-2.2.4.js"
+  integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+  crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <style>
+    .vue_active {
+        color: #38f;
+    }
+    .vue_border{
+        border:1px solid #38f;
+        width: 200px;
+        height: auto;
+        line-height: 30px;
+    }
+    </style>
+</head>
+<body>
+<h2>class与style</h2>
+    
+模拟addClass，removeClass，js动态写样式属性。
+
+<h2>class</h2>
+<div id="app1" v-bind:class="classOb">
+    <div>{{ name }}</div>
+</div>
+
+<div id="app2" v-bind:class='[active ? vue_active : "", border]'>
+    <div>{{ name }}</div>
+</div>
+
+<h2>style</h2>
+<div id="app3" class="classOb" v-bind:style="{color:'red'}">
+    <div>{{ name }}</div>
+</div>
+<div id="app4" class="classOb" v-bind:style="styleOb">
+    <div>{{ name }}</div>
+</div>
+</body>
+<script type="text/javascript">
+
+var vm4 = new Vue({
+    el: "#app4",
+    data: {
+        name:"我的名字",
+        active: true,
+        styleOb:{
+            color:"red",
+            lineHeight:'30px'
+        }
+    }
+        
+})
+
+var vm3 = new Vue({
+    el: "#app3",
+    data: {
+        name:"我的名字",
+        active: true
+    }
+        
+})
+
+
+var vm2 = new Vue({
+    el: "#app2",
+    data: {
+        name:"我的名字",
+        active: true,
+        vue_active : "vue_active",
+        border : "border"
+    }
+        
+})
+
+var vm1 = new Vue({
+    el: "#app1",
+    data: {
+        name:"我的名字",
+        active: true
+    },
+    computed:{
+        classOb:function(){
+            return {
+                vue_active : true,
+                vue_border : true
+            }
+            
+        }
+    }
+})
+
+
+var data = {
+    name: "zhangsan",
+    firstName:"first",
+    lastName:"last",
+    fullName:"",
+    height: "75KG",
+    data: [
+        {data1:1},
+        {data2:2},
+        {data3:3},
+        {data4:4},
+        {data5:5},
+        ],
+    html: "<p style='color:red;'>这是插入的html</p>",
+    message: "hello",
+    cumputed:{
+        reverseMessage:function(){
+            return 1
+        }
+        
+    }
+}
+
+
+
+
+
+function hInndex(){
+    var hAll = $("h2");
+    hAll.each(function(index,val){
+        $(this).text(index + 1 + ". " + $(this).text());
+        $(this).css({"margin-top":"50px"});
+    })
+}
+hInndex();
+
+
+</script>
+</html>
