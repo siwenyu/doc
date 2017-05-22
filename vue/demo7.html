@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script
+  src="https://code.jquery.com/jquery-2.2.4.js"
+  integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+  crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <style>
+    .vue_active {
+        color: #38f;
+    }
+    .vue_border{
+        border:1px solid #38f;
+        width: 200px;
+        height: auto;
+        line-height: 30px;
+    }
+    </style>
+</head>
+<body>
+<h2>v-if</h2>
+
+<div id="app1">
+    <input v-model="thisVal" ><br>
+    <input v-model="thisVal" ><br>
+    <input v-model="thisVal" ><br>
+    <input v-model="thisVal" ><br>
+    <input v-model="thisVal" v-on:focus="focused"><br>
+    <button v-on:click="">{{thisVal}}</button><br>
+</div>
+
+</body>
+<script type="text/javascript">
+
+var data = {
+    name: "zhangsan",
+    firstName:"first",
+    lastName:"last",
+    fullName:"",
+    height: "75KG",
+    ok:1,
+    show:false,
+    styleObject:{
+        color:"red"
+    },
+    data: [
+        {data1:1},
+        {data2:2},
+        {data3:3},
+        {data4:4},
+        {data5:5},
+        ],
+    html: "<p style='color:red;'>这是插入的html</p>",
+    message: "hello",
+    cumputed:{
+        reverseMessage:function(){
+            return 1;
+        }
+        
+    }
+}
+
+var vm1 = new Vue({
+    el: "#app1",
+    data: {
+        thisVal:'请输入',
+
+    },
+    methods:{
+        focused:function(){
+            this.thisVal=''
+        }
+    }
+})
+
+
+
+
+
+
+
+
+function hInndex(){
+    var hAll = $("h2");
+    hAll.each(function(index,val){
+        $(this).text(index + 1 + ". " + $(this).text());
+        $(this).css({"margin-top":"50px"});
+    })
+}
+hInndex();
+
+
+</script>
+</html>
