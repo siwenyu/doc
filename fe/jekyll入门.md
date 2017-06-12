@@ -42,7 +42,7 @@
 
 1. _config.yml 配置文件
 2. _drafts 草稿文件，没有添加配置和日期，干活。
-3. _includes 公用文件：这个标签  {% include file.ext %} 来把文件 _includes/file.ext 包含进来。
+3. _includes 公用文件：这个标签  '{% include file.ext %}' 来把文件 _includes/file.ext 包含进来。
 4. _layouts 大布局
 5. _posts 正式文章
 6. _site 生成的目录文件
